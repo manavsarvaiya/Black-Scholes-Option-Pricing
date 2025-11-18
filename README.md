@@ -2,6 +2,8 @@
 
 ## https://blackscholesmanav.streamlit.app/
 
+https://github.com/user-attachments/assets/1227443e-f7c0-4723-8202-1dca0093d650
+
 ## Overview
 This project implements a comprehensive financial calculator for option pricing and volatility analysis using the Black-Scholes model. The application features an interactive web interface built with Streamlit, enabling users to perform sophisticated financial calculations with ease.
 
