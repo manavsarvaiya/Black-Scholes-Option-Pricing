@@ -1,214 +1,109 @@
-📊 Black-Scholes Option Pricing & Implied Volatility Calculator
-<div align="center">
-https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white
-https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
-https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white
-https://img.shields.io/badge/SciPy-654FF0?style=for-the-badge&logo=SciPy&logoColor=white
+# Black-Scholes Option Pricing and Implied Volatility Calculator
 
-An interactive web application for financial option analysis using the Black-Scholes model
+## Overview
+This project implements a comprehensive financial calculator for option pricing and volatility analysis using the Black-Scholes model. The application features an interactive web interface built with Streamlit, enabling users to perform sophisticated financial calculations with ease.
 
-</div>
-🌟 Overview
-This professional-grade web application implements the renowned Black-Scholes model for European option pricing and implied volatility calculation. Built with Streamlit, it provides financial analysts, traders, students, and researchers with an intuitive interface for real-time option valuation and market analysis.
+## Features
+- Option Pricing: Calculate theoretical prices for European call and put options
 
-✨ Features
-Feature	Description
-🎯 Option Pricing	Calculate theoretical prices for call and put options
-📈 Implied Volatility	Derive market-implied volatility from option prices
-🔄 Real-time Calculations	Instant results with interactive parameter adjustments
-📊 Dual Option Support	Comprehensive analysis for both call and put options
-🎨 User-Friendly Interface	Clean, intuitive design for seamless user experience
-🔍 Model Verification	Built-in validation to ensure calculation accuracy
-🚀 Quick Start
-Prerequisites
-Python 3.8 or higher
+- Implied Volatility: Determine market-implied volatility from observed option prices
 
-pip (Python package manager)
+- Dual Option Support: Full functionality for both call and put options
 
-Installation
-Clone the repository
+- Interactive Interface: User-friendly web-based input system
 
-bash
-git clone https://github.com/yourusername/black-scholes-calculator.git
-cd black-scholes-calculator
-Install required dependencies
+- Real-time Computation: Instant calculation results with detailed outputs
 
-bash
-pip install streamlit numpy scipy matplotlib
-Launch the application
+## Installation
+1) Download or clone the project files to your local machine
 
-bash
+2) Install the required Python packages:
+
+```
+pip install streamlit numpy scipy
+```
+3) Launch the application using Streamlit:
+```
 streamlit run app.py
-Access the application
+```
+4) Access the application through your web browser at the provided local address
 
-Open your web browser
+# Theoretical Foundation
+## Black-Scholes Model
+The Black-Scholes model represents a foundational framework in financial mathematics for valuing European options. Developed through pioneering work in quantitative finance, this model provides analytical solutions for option pricing under specific market assumptions.
 
-Navigate to http://localhost:8501
+## Core Assumptions
+- The model operates under these key premises:
 
-Start analyzing options!
+- Asset prices follow geometric Brownian motion with consistent volatility
 
-🧮 Theoretical Framework
-Black-Scholes Model
-The Black-Scholes model revolutionized financial economics by providing the first widely adopted mathematical framework for option pricing. Developed by Fischer Black, Myron Scholes, and Robert Merton, this Nobel Prize-winning model remains foundational in quantitative finance.
+- Markets function without transaction costs or tax implications
 
-Key Assumptions
-✅ Asset prices follow geometric Brownian motion
+- Risk-free interest rates remain stable over the option period
 
-✅ No transaction costs or taxes
+- Underlying assets generate no dividend income
 
-✅ Constant risk-free interest rate
+- Arbitrage opportunities are absent from efficient markets
 
-✅ No dividend payments during option life
+## Mathematical Formulation
+For European call options, the Black-Scholes equation is:
 
-✅ Efficient markets with no arbitrage opportunities
-
-Pricing Formulas
-Call Option:
-
-text
 C = S₀N(d₁) - Ke^(-rT)N(d₂)
-Put Option:
 
-text
-P = Ke^(-rT)N(-d₂) - S₀N(-d₁)
 Where:
 
-text
-d₁ = [ln(S₀/K) + (r + σ²/2)T] / (σ√T)
-d₂ = d₁ - σ√T
-Symbol	Definition
-S₀	Current underlying asset price
-K	Option strike price
-r	Annual risk-free interest rate
-T	Time to expiration (years)
-σ	Volatility of underlying asset
-N(x)	Standard normal cumulative distribution
-Implied Volatility
-Implied volatility represents the market's expectation of future price fluctuations, derived from current option prices. This application uses the Newton-Raphson numerical method to efficiently solve for implied volatility.
+- C represents the call option premium
 
-💻 Usage Guide
-Option Pricing
-Select option type (Call/Put)
+- S₀ indicates the current underlying asset price
 
-Input current stock price, strike price, and time to expiration
+- K denotes the option strike price
 
-Specify risk-free rate and volatility
+- r signifies the annual risk-free rate
 
-View instant theoretical price calculation
+- T expresses the time remaining until expiration
 
-Implied Volatility Calculation
-Enter observed market option price
+- N(x) is the standard normal cumulative distribution
 
-Provide all other option parameters
+- d₁ = [ln(S₀/K) + (r + σ²/2)T] / (σ√T)
 
-Set initial volatility estimate
+- d₂ = d₁ - σ√T
 
-Obtain calculated implied volatility with convergence details
+- σ represents the annualized volatility
 
-Input Parameters
-Parameter	Description	Typical Range
-Stock Price (S₀)	Current price of underlying asset	$1 - $1000+
-Strike Price (K)	Option exercise price	$1 - $1000+
-Time to Expiry (T)	Years until expiration	0.01 - 5+ years
-Risk-Free Rate (r)	Annual continuous compound rate	0.1% - 10%
-Volatility (σ)	Annualized standard deviation	10% - 100%+
-📋 Example Calculation
-Scenario: Analyzing a call option with the following parameters:
+The corresponding put option formula is:
 
-Stock Price: $100
+P = Ke^(-rT)N(-d₂) - S₀N(-d₁)
 
-Strike Price: $105
+## Implied Volatility Computation
+Implied volatility reflects the market's collective expectation of future price variability, derived indirectly from observed option prices rather than historical data.
 
-Time to Expiry: 0.5 years
+This metric represents the volatility parameter that, when applied within the Black-Scholes framework, produces a theoretical option value matching the current market price. Our implementation employs the Newton-Raphson numerical method to iteratively solve for this implied volatility value.
 
-Risk-Free Rate: 2.5%
+## Application Usage
+The calculator interface provides intuitive input fields for all required parameters:
 
-Volatility: 25%
+- Current underlying asset price
 
-Result: Theoretical call option price = $3.42
+- Option strike price
 
-🛠️ Technical Implementation
-Architecture
-text
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Streamlit UI  │───▶│  Calculation     │───▶│  Results        │
-│                 │    │  Engine          │    │  Display        │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
-                     ┌───────────┴───────────┐
-                     │   Mathematical        │
-                     │   Core (Black-Scholes)│
-                     └───────────────────────┘
-Key Components
-Frontend: Streamlit-powered web interface
+- Time to expiration
 
-Numerical Methods: Newton-Raphson for implied volatility
+- Risk-free interest rate
 
-Statistical Functions: SciPy for normal distribution calculations
+- Market-observed option price
 
-Data Processing: NumPy for efficient numerical operations
+- Option type selection
 
-🔧 Development
-Project Structure
-text
-black-scholes-calculator/
-│
-├── app.py                 # Main application file
-├── requirements.txt       # Project dependencies
-├── README.md             # Project documentation
-└── assets/               # Images and resources
-Contributing
-We welcome contributions from the community! Please feel free to:
+- Initial volatility estimate
 
-Report bugs and issues
+## Educational Value
+This tool serves as both a practical calculator and educational resource, demonstrating:
 
-Suggest new features
+- Black-Scholes model implementation
 
-Submit pull requests
+- Implied volatility concepts
 
-Improve documentation
+- Numerical methods in finance
 
-Code Standards
-Follow PEP 8 guidelines
-
-Include docstrings for all functions
-
-Maintain comprehensive test coverage
-
-Ensure type hints where applicable
-
-📚 Educational Value
-This application serves as an excellent educational tool for:
-
-Finance students learning option pricing theory
-
-Professionals validating manual calculations
-
-Researchers testing model variations
-
-Traders understanding volatility dynamics
-
-⚠️ Limitations & Disclaimer
-Model Limitations
-Designed for European-style options only
-
-Assumes constant volatility and interest rates
-
-Does not account for dividend payments
-
-Market frictions not considered
-
-Usage Disclaimer
-This tool is intended for educational and analytical purposes only. It should not be considered as financial advice. Always consult with qualified financial professionals before making investment decisions.
-
-📊 Performance
-Calculation Speed: Near-instant results (< 100ms)
-
-Accuracy: Convergence within 1e-10 tolerance
-
-Scalability: Handles multiple simultaneous calculations
-
-Reliability: Robust error handling and input validation
+- Financial application development
 
